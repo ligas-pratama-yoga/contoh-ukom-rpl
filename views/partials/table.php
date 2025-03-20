@@ -7,10 +7,12 @@
 		<div>
 			<a href="<?=$_SERVER['REQUEST_URI'] . "/recovery" ?>"
 				class="btn btn-info btn-sm">Recovery</a>
+			<?php if($tambahBtn ?? true): ?>
 			<button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#tambahData">
 				<i class="fas fa-add"></i>
 				Tambah Data
 			</button>
+			<?php endif; ?>
 		</div>
 	</div>
 	<div class="card-body">
@@ -40,7 +42,8 @@
 						<form
 							action="<?= $_SERVER['REQUEST_URI'] . "/{$data["ID"]}" ?>"
 							method="post">
-							<input type="hidden" name="id" value="<?= $data['ID'] ?>">
+							<input type="hidden" name="id"
+								value="<?= $data['ID'] ?>">
 							<button class="btn btn-sm btn-info">
 								Balikan
 							</button>

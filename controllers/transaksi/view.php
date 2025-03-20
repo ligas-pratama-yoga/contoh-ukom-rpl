@@ -42,6 +42,7 @@ $data_items_pdf[] = [
     ],
 ];
 
+$tambahBtn = $data_transaksi['status_pembayaran'] == null ? true : false;
 
 // BERAKHIR DISINI!!!
 if (isset($_SESSION['showAlert'])) {

@@ -96,11 +96,15 @@ require __DIR__ . "/partials/navigation.php";
 							<div>
 
 								<button id="download-button" onclick="generatePDF()" class="btn btn-info">Print</button>
+								<!-- 						MULAI DARI SINI		 -->
+								<?php if($tambahBtn ?? true): ?>
 								<button type="button" class="btn btn-lg btn-outline-info" data-bs-toggle="modal"
 									data-bs-target="#transaksiModal">
 									<i class="fas fa-money-bill"></i>
 									Bayar
 								</button>
+								<?php endif; ?>
+								<!-- SELESAI DISINI -->
 							</div>
 						</div>
 						<div class="container">
@@ -169,7 +173,10 @@ require __DIR__ . "/partials/navigation.php";
             "columns" => $columns,
             "data_produk" => $data_produk,
             "key_pair" => ["data_produk", "id"],
-            "totalPrice" => [true, $total_harga]
+            "totalPrice" => [true, $total_harga],
+            // MULAI DARI SINI
+            'tambahBtn' => $tambahBtn
+            // SELESAI DISINI
         ]) ?>
 	</div>
 </main>
