@@ -20,7 +20,8 @@ class Items extends \Core\Models
                                         where items_transaksi.deleted_at is null order by items_transaksi.id")->fetchAll();
     }
 
-    public static function allId($id, $columns = ["*"]) {
+    public static function allId($id, $columns = ["*"])
+    {
         $instance = new static();
         $columns = implode(',', $columns);
         return $instance->conn->query("select $columns from {$instance->table} 
@@ -28,19 +29,37 @@ class Items extends \Core\Models
                                                 inner join users on transaksi.id_users = users.id) tmp_pelanggan
                                                 on {$instance->table}.id_transaksi = tmp_pelanggan.id_transaksi
                                     inner join produk on {$instance->table}.id_produk = produk.id
-                                        where items_transaksi.deleted_at is null 
+                                        where (items_transaksi.deleted_at is null 
+                                        or items_transaksi.deleted_at = '-infinity')
+                                        and items_transaksi.id_transaksi = $id
+                                        order by items_transaksi.id
+                                        ")->fetchAll();
+    }
+    public static function allIdDeleted($id, $columns = ["*"])
+    {
+        $instance = new static();
+        $columns = implode(',', $columns);
+        return $instance->conn->query("select $columns from {$instance->table} 
+                                    inner join (select transaksi.id as \"id_transaksi\", users.* from transaksi 
+                                                inner join users on transaksi.id_users = users.id) tmp_pelanggan
+                                                on {$instance->table}.id_transaksi = tmp_pelanggan.id_transaksi
+                                    inner join produk on {$instance->table}.id_produk = produk.id
+                                        where items_transaksi.deleted_at is not null 
+                                        and items_transaksi.deleted_at != '-infinity'
                                         and items_transaksi.id_transaksi = $id
                                         order by items_transaksi.id
                                         ")->fetchAll();
     }
 
-    public static function totalPrice($id) {
-        $instance = new static;
+    public static function totalPrice($id)
+    {
+        $instance = new static();
         return $instance->conn->query("
                                 select sum($instance->table.jumlah_produk * produk.harga) as \"total_harga\" from $instance->table
                                     inner join produk on $instance->table.id_produk = produk.id
                                 where $instance->table.id_transaksi = $id
-                                and $instance->table.deleted_at is null
+                                and ($instance->table.deleted_at is null
+                                or $instance->table.deleted_at = '-infinity')
                                 ")->fetch()["total_harga"];
     }
 }

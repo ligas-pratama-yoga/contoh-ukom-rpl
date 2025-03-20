@@ -9,7 +9,10 @@ $routes = [
     'get' => [
         "/kasir_ligas/public/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/view.php",
         "/kasir_ligas/public/transaksi" => __DIR__ . "/../controllers/transaksi/index.php",
+        "/kasir_ligas/public/transaksi/recovery" => __DIR__ . "/../controllers/recovery/transaksi/index.php",
+        "/kasir_ligas/public/transaksi/{id}/recovery" => __DIR__ . "/../controllers/recovery/transaksi/index_view.php",
         "/kasir_ligas/public/produk/recovery" => __DIR__ . "/../controllers/recovery/produk/index.php",
+        "/kasir_ligas/public/users/recovery" => __DIR__ . "/../controllers/recovery/users/index.php",
 
         "/kasir_ligas/public/" => base_path("controllers/static/index.php"),
         "/kasir_ligas/public/pdf" => base_path("views/pdfMaker.view.php"),
@@ -25,6 +28,9 @@ $routes = [
 
         "/kasir_ligas/public/produk" => __DIR__ . "/../controllers/produk/tambah.php",
         "/kasir_ligas/public/produk/recovery/{id}" => __DIR__ . "/../controllers/recovery/produk/restore.php",
+        "/kasir_ligas/public/users/recovery/{id}" => __DIR__ . "/../controllers/recovery/users/restore.php",
+        "/kasir_ligas/public/transaksi/recovery/{id}" => __DIR__ . "/../controllers/recovery/transaksi/restore.php",
+        "/kasir_ligas/public/transaksi/{id}/recovery/{id}" => __DIR__ . "/../controllers/recovery/transaksi/restore_view.php",
         "/kasir_ligas/public/users" => __DIR__ . "/../controllers/users/tambah.php",
         "/kasir_ligas/public/items_transaksi" => __DIR__ . "/../controllers/items/tambah.php",
         "/kasir_ligas/public/transaksi" => __DIR__ . "/../controllers/transaksi/tambah.php",

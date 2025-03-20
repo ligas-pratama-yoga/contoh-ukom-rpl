@@ -11,7 +11,7 @@ $datas = Transaksi::allDeleted([
     'users.name as "Nama"',
     'users.email as "Email"',
     'transaksi.created_at as "Tanggal Transaksi"',
-    'deleted_at as "Dihapus pada"'
+    'transaksi.deleted_at as "Dihapus pada"'
 ]);
 $columns = array_keys($datas[0] ?? []);
 
@@ -19,6 +19,6 @@ $id_users = Transaksi::all([
     'users.id as "id_user"'
 ]);
 $data_users = Users::all(["id", "name"]);
+$headOne = "Transaksi";
 
-
-require __DIR__ . "/../../../views/transaksi.view.php";
+require __DIR__ . "/../../../views/recovery.view.php";

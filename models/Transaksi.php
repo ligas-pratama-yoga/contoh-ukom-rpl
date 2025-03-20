@@ -17,7 +17,13 @@ class Transaksi extends Models
         return $instance->conn->query("select {$columns} from {$instance->table} inner join users on transaksi.id_users = users.id
                                         where transaksi.deleted_at is null order by transaksi.id")->fetchAll();
     }
-
+    public static function allDeleted($columns = ["*"])
+    {
+        $instance = new static();
+        $columns = implode(',', $columns);
+        return $instance->conn->query("select {$columns} from {$instance->table} inner join users on transaksi.id_users = users.id
+                                        where transaksi.deleted_at is not null and transaksi.deleted_at != '-infinity' order by transaksi.id")->fetchAll();
+    }
     public static function find($id)
     {
         $instance = new static();

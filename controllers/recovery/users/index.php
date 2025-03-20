@@ -12,5 +12,5 @@ $datas = Users::allDeleted([
     'deleted_at as "Dihapus pada"'
 ]);
 $columns = array_keys($datas[0] ?? []);
-
-require __DIR__ . "/../../../views/users.view.php";
+$headOne = "Users";
+require __DIR__ . "/../../../views/recovery.view.php";

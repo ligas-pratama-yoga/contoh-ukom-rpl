@@ -18,10 +18,6 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
                                 Transaksi
                             </a>
-                            <a class="nav-link" href="/kasir_ligas/public/items_transaksi">
-                                <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
-                                Items Transaksi
-                            </a>
                             <a class="nav-link" href="/kasir_ligas/public/users">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Users
