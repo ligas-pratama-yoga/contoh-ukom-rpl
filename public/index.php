@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require __DIR__ . "/../helper/functions.php";
 $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
