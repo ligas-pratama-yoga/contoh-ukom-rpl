@@ -13,8 +13,8 @@ class Items extends \Core\Models
         $instance = new static();
         $columns = implode(',', $columns);
         return $instance->conn->query("select {$columns} from {$instance->table} 
-                                    inner join (select transaksi.id as \"id_transaksi\", users.* from transaksi 
-                                                inner join users on transaksi.id_users = users.id) tmp_pelanggan
+                                    inner join (select transaksi.id as \"id_transaksi\", pelanggan.* from transaksi 
+                                                inner join pelanggan on transaksi.id_pelanggan = users.id) tmp_pelanggan
                                                 on {$instance->table}.id_transaksi = tmp_pelanggan.id_transaksi
                                     inner join produk on {$instance->table}.id_produk = produk.id
                                         where items_transaksi.deleted_at is null order by items_transaksi.id")->fetchAll();
@@ -25,8 +25,8 @@ class Items extends \Core\Models
         $instance = new static();
         $columns = implode(',', $columns);
         return $instance->conn->query("select $columns from {$instance->table} 
-                                    inner join (select transaksi.id as \"id_transaksi\", users.* from transaksi 
-                                                inner join users on transaksi.id_users = users.id) tmp_pelanggan
+                                    inner join (select transaksi.id as \"id_transaksi\", pelanggan.* from transaksi 
+                                                inner join pelanggan on transaksi.id_pelanggan = users.id) tmp_pelanggan
                                                 on {$instance->table}.id_transaksi = tmp_pelanggan.id_transaksi
                                     inner join produk on {$instance->table}.id_produk = produk.id
                                         where (items_transaksi.deleted_at is null 
@@ -40,8 +40,8 @@ class Items extends \Core\Models
         $instance = new static();
         $columns = implode(',', $columns);
         return $instance->conn->query("select $columns from {$instance->table} 
-                                    inner join (select transaksi.id as \"id_transaksi\", users.* from transaksi 
-                                                inner join users on transaksi.id_users = users.id) tmp_pelanggan
+                                    inner join (select transaksi.id as \"id_transaksi\", pelanggan.* from transaksi 
+                                                inner join pelanggan on transaksi.id_pelanggan = users.id) tmp_pelanggan
                                                 on {$instance->table}.id_transaksi = tmp_pelanggan.id_transaksi
                                     inner join produk on {$instance->table}.id_produk = produk.id
                                         where items_transaksi.deleted_at is not null 

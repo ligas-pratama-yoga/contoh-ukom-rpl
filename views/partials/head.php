@@ -8,10 +8,10 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
 
-        <script src="/kasir_ligas/public/js/custom.js"></script>
+        <script src="<?= $base_url ?>/js/custom.js"></script>
 
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.min.css" rel="stylesheet" />
-        <link href="/kasir_ligas/public/css/styles.css" rel="stylesheet" />
+        <link href="<?= $base_url ?>/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body class="sb-nav-fixed">

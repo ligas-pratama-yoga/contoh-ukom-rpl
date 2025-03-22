@@ -1,23 +1,27 @@
 <?php
 
 require __DIR__ . "/../../models/Transaksi.php";
-require __DIR__ . "/../../models/Users.php";
+require __DIR__ . "/../../models/Pelanggan.php";
 
 use Models\Transaksi;
-use Models\Users;
+use Models\pelanggan;
 
-$datas = Transaksi::all([
+$datas = Transaksi::all(
+    [
     'transaksi.id as "ID"',
-    'users.name as "Nama"',
-    'users.email as "Email"',
-    'transaksi.created_at as "Tanggal Transaksi"'
-]);
+    'pelanggan.nama as "Nama"',
+    'pelanggan.email as "Email"',
+    'transaksi.tanggal_transaksi as "Tanggal Transaksi"'
+    ]
+);
 $columns = array_keys($datas[0] ?? []);
 
-$id_users = Transaksi::all([
-    'users.id as "id_user"'
-]);
-$data_users = Users::all(["id", "name"]);
+$id_pelanggan = Transaksi::all(
+    [
+    'pelanggan.id as "id_pelanggan"'
+    ]
+);
+$data_pelanggan = Pelanggan::all(["id", "nama"]);
 
 
 require __DIR__ . "/../../views/transaksi.view.php";

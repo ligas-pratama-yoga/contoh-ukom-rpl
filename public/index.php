@@ -2,61 +2,60 @@
 
 session_start();
 require __DIR__ . "/../helper/functions.php";
-
-$uri = preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI']);
+$base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
+$uri = str_replace($base_url, "", preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI']));
 $method = strtolower($_REQUEST['_method'] ?? $_SERVER['REQUEST_METHOD']);
 $routes = [
     'get' => [
-        "/kasir_ligas/public/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/view.php",
-        "/kasir_ligas/public/transaksi" => __DIR__ . "/../controllers/transaksi/index.php",
-        "/kasir_ligas/public/transaksi/recovery" => __DIR__ . "/../controllers/recovery/transaksi/index.php",
-        "/kasir_ligas/public/transaksi/{id}/recovery" => __DIR__ . "/../controllers/recovery/transaksi/index_view.php",
-        "/kasir_ligas/public/produk/recovery" => __DIR__ . "/../controllers/recovery/produk/index.php",
-        "/kasir_ligas/public/users/recovery" => __DIR__ . "/../controllers/recovery/users/index.php",
+        "/" => base_path("controllers/static/index.php"),
+        "/pdf" => base_path("views/pdfMaker.view.php"),
 
-        "/kasir_ligas/public/" => base_path("controllers/static/index.php"),
-        "/kasir_ligas/public/pdf" => base_path("views/pdfMaker.view.php"),
+        "/produk" => __DIR__ . "/../controllers/produk/index.php",
+        "/users" => __DIR__ . "/../controllers/users/index.php",
+        "/items_transaksi" => __DIR__ . "/../controllers/items/index.php",
+        "/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/view.php",
+        "/transaksi" => __DIR__ . "/../controllers/transaksi/index.php",
+        "/transaksi/recovery" => __DIR__ . "/../controllers/recovery/transaksi/index.php",
+        "/transaksi/{id}/recovery" => __DIR__ . "/../controllers/recovery/transaksi/index_view.php",
+        "/produk/recovery" => __DIR__ . "/../controllers/recovery/produk/index.php",
+        "/users/recovery" => __DIR__ . "/../controllers/recovery/users/index.php",
 
-        "/kasir_ligas/public/produk" => __DIR__ . "/../controllers/produk/index.php",
-        "/kasir_ligas/public/users" => __DIR__ . "/../controllers/users/index.php",
-        "/kasir_ligas/public/items_transaksi" => __DIR__ . "/../controllers/items/index.php",
-
-        "/kasir_ligas/public/login" => __DIR__ . "/../views/login.php",
+        "/login" => __DIR__ . "/../views/login.php",
     ],
     'post' => [
-        "/kasir_ligas/public/login" => __DIR__ . "/../controllers/session/tambah.php",
+        "/login" => __DIR__ . "/../controllers/session/tambah.php",
 
-        "/kasir_ligas/public/produk" => __DIR__ . "/../controllers/produk/tambah.php",
-        "/kasir_ligas/public/produk/recovery/{id}" => __DIR__ . "/../controllers/recovery/produk/restore.php",
-        "/kasir_ligas/public/users/recovery/{id}" => __DIR__ . "/../controllers/recovery/users/restore.php",
-        "/kasir_ligas/public/transaksi/recovery/{id}" => __DIR__ . "/../controllers/recovery/transaksi/restore.php",
-        "/kasir_ligas/public/transaksi/{id}/recovery/{id}" => __DIR__ . "/../controllers/recovery/transaksi/restore_view.php",
-        "/kasir_ligas/public/users" => __DIR__ . "/../controllers/users/tambah.php",
-        "/kasir_ligas/public/items_transaksi" => __DIR__ . "/../controllers/items/tambah.php",
-        "/kasir_ligas/public/transaksi" => __DIR__ . "/../controllers/transaksi/tambah.php",
+        "/produk" => __DIR__ . "/../controllers/produk/tambah.php",
+        "/produk/recovery/{id}" => __DIR__ . "/../controllers/recovery/produk/restore.php",
+        "/users/recovery/{id}" => __DIR__ . "/../controllers/recovery/users/restore.php",
+        "/transaksi/recovery/{id}" => __DIR__ . "/../controllers/recovery/transaksi/restore.php",
+        "/transaksi/{id}/recovery/{id}" => __DIR__ . "/../controllers/recovery/transaksi/restore_view.php",
+        "/users" => __DIR__ . "/../controllers/users/tambah.php",
+        "/items_transaksi" => __DIR__ . "/../controllers/items/tambah.php",
+        "/transaksi" => __DIR__ . "/../controllers/transaksi/tambah.php",
 
-        "/kasir_ligas/public/transaksi/bayar" => __DIR__ . "/../controllers/transaksi/bayar.php"
+        "/transaksi/bayar" => __DIR__ . "/../controllers/transaksi/bayar.php"
     ],
     "patch" => [
-        "/kasir_ligas/public/produk/{id}" => __DIR__ . "/../controllers/produk/edit.php",
-        "/kasir_ligas/public/users/{id}" => __DIR__ . "/../controllers/users/edit.php",
-        "/kasir_ligas/public/items_transaksi/{id}" => __DIR__ . "/../controllers/items/edit.php",
-        "/kasir_ligas/public/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/edit.php",
+        "/produk/{id}" => __DIR__ . "/../controllers/produk/edit.php",
+        "/users/{id}" => __DIR__ . "/../controllers/users/edit.php",
+        "/items_transaksi/{id}" => __DIR__ . "/../controllers/items/edit.php",
+        "/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/edit.php",
     ],
     "delete" => [
-        "/kasir_ligas/public/produk/{id}" => __DIR__ . "/../controllers/produk/hapus.php",
-        "/kasir_ligas/public/users/{id}" => __DIR__ . "/../controllers/users/hapus.php",
-        "/kasir_ligas/public/items_transaksi/{id}" => __DIR__ . "/../controllers/items/hapus.php",
-        "/kasir_ligas/public/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/hapus.php",
-        "/kasir_ligas/public/logout" => __DIR__ . "/../controllers/session/hapus.php"
+        "/produk/{id}" => __DIR__ . "/../controllers/produk/hapus.php",
+        "/users/{id}" => __DIR__ . "/../controllers/users/hapus.php",
+        "/items_transaksi/{id}" => __DIR__ . "/../controllers/items/hapus.php",
+        "/transaksi/{id}" => __DIR__ . "/../controllers/transaksi/hapus.php",
+        "/logout" => __DIR__ . "/../controllers/session/hapus.php"
     ]
 ];
 
-
+/*exit;*/
 if (array_key_exists($uri, $routes[$method])) {
-    require $routes[$method][$uri];
+    include $routes[$method][$uri];
 } else {
     echo "<h1>404 Not Found</h1>";
     echo "<h1>Halaman tidak ditemukan!</h1>";
-    echo "<a href='/kasir_ligas/public/'>Kembali ke habitat</a>";
+    echo "<a href='/'>Kembali ke habitat</a>";
 }

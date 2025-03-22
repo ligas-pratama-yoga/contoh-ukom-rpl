@@ -15,7 +15,7 @@ $data_transaksi = Transaksi::find($id);
 
 $data_items = Items::allId($id, [
     'items_transaksi.id as "ID"',
-    'produk.nama_produk as "Nama Produk"',
+    'produk.nama as "Nama Produk"',
     'produk.harga as "Harga/satuan"',
     'items_transaksi.jumlah_produk as "Jumlah Produk"',
     'items_transaksi.jumlah_produk * produk.harga as "Jumlah Harga"'

@@ -10,4 +10,4 @@ if (!array_key_exists("permanent", $datas)) {
     \Models\Produk::delete($datas['id']);
 }
 
-header('location: /kasir_ligas/public/produk');
+header("location: {$base_url}/produk");

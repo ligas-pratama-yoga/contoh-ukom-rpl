@@ -2,9 +2,9 @@
 
 require __DIR__ . "/../../../models/Produk.php";
 
-$datas = $_REQUEST;
+$datas = $_POST;
 
 \Models\Produk::update(['deleted_at' => '-infinity'])
                 ->where('id', $datas['id']);
 
-header('location: /kasir_ligas/public/produk/recovery');
+header("location: {$base_url}/produk/recovery");

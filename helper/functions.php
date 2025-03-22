@@ -8,14 +8,15 @@ function base_path($path)
 function partials($path, $variables = [])
 {
     extract($variables);
+    $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
     require base_path("views/partials/$path.php");
 }
 
 
 function cekAuth()
 {
-    if (!isset($_SESSION['id'])) {
-        header("location: /kasir_ligas/public/login");
-        exit;
-    }
+    /*if (!isset($_SESSION['id'])) {*/
+    /*    header("location: {$base_url}/login");*/
+    /*    exit;*/
+    /*}*/
 }
