@@ -22,7 +22,9 @@
                     <?php foreach($columns as $value): ?>
                     <th><?php echo $value ?></th>
                     <?php endforeach; ?>
+                    <?php if($columns ?? false) : ?>
                     <th>Aksi</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <?php if($totalPrice[0] ?? false) : ?>

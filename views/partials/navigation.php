@@ -16,6 +16,10 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-money-bill"></i></div>
                                 Transaksi
                             </a>
+<a class="nav-link" href="<?= $base_url ?>/pelanggan">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
+                                Pelanggan
+                            </a>
 <a class="nav-link" href="<?= $base_url ?>/users">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Users

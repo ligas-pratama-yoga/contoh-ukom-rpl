@@ -15,8 +15,9 @@ function partials($path, $variables = [])
 
 function cekAuth()
 {
-    /*if (!isset($_SESSION['id'])) {*/
-    /*    header("location: {$base_url}/login");*/
-    /*    exit;*/
-    /*}*/
+    if (!isset($_SESSION['id'])) {
+        $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
+        header("location: {$base_url}/login");
+        exit;
+    }
 }

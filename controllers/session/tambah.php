@@ -1,14 +1,11 @@
 <?php
 
-
 require __DIR__ . "/../../models/Users.php";
 use Models\Users;
 
-// var_dump(Users::find($_POST));
-// exit;
 if (Users::find($_POST)) {
-    $_SESSION['id'] = $_POST['name'];
-    header("location: /kasir_ligas/public/");
+    $_SESSION['id'] = $_POST['nama'];
+    header("location: {$base_url}/");
 } else {
-    header("location: /kasir_ligas/public/login");
+    header("location: {$base_url}/login");
 }

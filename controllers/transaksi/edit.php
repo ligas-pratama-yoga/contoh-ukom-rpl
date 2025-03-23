@@ -10,4 +10,4 @@ $datas_upload = array_slice($datas, 1);
 \Models\Transaksi::update($datas_upload)
                 ->where('id', $datas['id']);
 
-header('location: /kasir_ligas/public/transaksi');
+header("location: {$base_url}/transaksi");

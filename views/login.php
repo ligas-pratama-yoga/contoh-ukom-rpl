@@ -20,10 +20,10 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form action="/kasir_ligas/public/login" method="post">
+                                    <form action="<?php echo $base_url ?>/login" method="post">
                                             <div class="form-floating mb-3">
-                                                <input name="name" class="form-control" id="name" type="text" placeholder="Nama" />
-                                                <label for="name">Nama</label>
+                                                <input name="nama" class="form-control" id="nama" type="text" placeholder="Nama" />
+                                                <label for="nama">Nama</label>
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input name="password" class="form-control" id="inputPassword" type="password" placeholder="Password" />

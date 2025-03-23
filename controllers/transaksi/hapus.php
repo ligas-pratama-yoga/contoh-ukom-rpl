@@ -10,4 +10,4 @@ if (!array_key_exists("permanent", $datas)) {
     \Models\Transaksi::delete($datas['id']);
 }
 
-header('location: /kasir_ligas/public/transaksi');
+header("location: {$base_url}/transaksi");

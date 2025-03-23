@@ -4,13 +4,12 @@ require __DIR__ . "/../../models/Transaksi.php";
 require __DIR__ . "/../../models/Pelanggan.php";
 
 use Models\Transaksi;
-use Models\pelanggan;
+use Models\Pelanggan;
 
 $datas = Transaksi::all(
     [
     'transaksi.id as "ID"',
     'pelanggan.nama as "Nama"',
-    'pelanggan.email as "Email"',
     'transaksi.tanggal_transaksi as "Tanggal Transaksi"'
     ]
 );
