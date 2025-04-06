@@ -9,7 +9,7 @@ function partials($path, $variables = [])
 {
     extract($variables);
     $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
-    require base_path("views/partials/$path.php");
+    include base_path("views/partials/$path.php");
 }
 
 
@@ -20,4 +20,9 @@ function cekAuth()
         header("location: {$base_url}/login");
         exit;
     }
+}
+
+function idr($amount)
+{
+    return "Rp. $amount";
 }

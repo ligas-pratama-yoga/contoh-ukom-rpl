@@ -13,13 +13,33 @@ $id = end($explode_uri);
 
 $data_transaksi = Transaksi::find($id);
 
-$data_items = Items::allId($id, [
+$data_items = Items::allId(
+    $id, [
     'items_transaksi.id as "ID"',
     'produk.nama as "Nama Produk"',
+    'items_transaksi.subtotal as "Jumlah Produk"',
     'produk.harga as "Harga/satuan"',
-    'items_transaksi.jumlah_produk as "Jumlah Produk"',
-    'items_transaksi.jumlah_produk * produk.harga as "Jumlah Harga"'
-]);
+    'items_transaksi.subtotal * produk.harga as "Jumlah Harga"'
+    ]
+);
+/*$data_items = [];*/
+/*$tmp = [];*/
+/*foreach ($data_items_tmp as $data) {*/
+/*    $unit = array_map(*/
+/*        function ($k, $v) {*/
+/*            if ($k == "Harga/satuan" || $k == "Jumlah Harga") {*/
+/*                $v = idr($v);*/
+/*            }*/
+/*            return $ret;*/
+/*        },*/
+/*        array_keys($data),*/
+/*        array_values($data)*/
+/*    );*/
+/*}*/
+/*echo "<pre>";*/
+/*var_dump($data_items);*/
+/*echo "</pre>";*/
+/*exit;*/
 
 $data_produk = Produk::all();
 $columns = array_keys($data_items[0] ?? []);
@@ -43,7 +63,6 @@ $data_items_pdf[] = [
 ];
 
 $tambahBtn = $data_transaksi['status_pembayaran'] == null ? true : false;
-
 // BERAKHIR DISINI!!!
 if (isset($_SESSION['showAlert'])) {
     $showDangerAlert = $_SESSION['showAlert'] == 'danger' ? true : false;

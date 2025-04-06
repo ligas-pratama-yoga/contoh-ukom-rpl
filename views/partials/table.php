@@ -5,9 +5,9 @@
             Data
         </div>
         <div>
+            <?php if($tambahBtn ?? true) : ?>
             <a href="<?php echo $_SERVER['REQUEST_URI'] . "/recovery" ?>"
                 class="btn btn-info btn-sm">Recovery</a>
-            <?php if($tambahBtn ?? true) : ?>
             <button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#tambahData">
                 <i class="fas fa-add"></i>
                 Tambah Data
@@ -22,7 +22,7 @@
                     <?php foreach($columns as $value): ?>
                     <th><?php echo $value ?></th>
                     <?php endforeach; ?>
-                    <?php if($columns ?? false) : ?>
+                    <?php if(($columns ?? false) && (!isset($tambahBtn))) : ?>
                     <th>Aksi</th>
                     <?php endif; ?>
                 </tr>
@@ -51,15 +51,17 @@
                             </button>
                         </form>
                         <?php else: ?>
-                        <button type="button" class="btn btn-sm text-warning" onclick="setModal(this, 'editData')"
-                            datas-entity='<?php echo '["' . implode('", "', $data) . '"]' ?>'
-                            data-other="<?php echo ${$key_pair[0]}[$key][$key_pair[1]] ?? "" ?>">
-                            <i class="fas fa-pen"></i>
-                        </button>
-                        <button type="button" class="btn btn-sm text-danger" onclick="setModal(this, 'hapusData')"
-                            datas-entity='<?php echo '["' . $data["ID"] . '"]' ?>'>
-                            <i class="fas fa-trash"></i>
-                        </button>
+                          <?php if($tambahBtn ?? true) : ?>
+                            <button type="button" class="btn btn-sm text-warning" onclick="setModal(this, 'editData')"
+                                datas-entity='<?php echo '["' . implode('", "', $data) . '"]' ?>'
+                                data-other="<?php echo ${$key_pair[0]}[$key][$key_pair[1]] ?? "" ?>">
+                              <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm text-danger" onclick="setModal(this, 'hapusData')"
+                                datas-entity='<?php echo '["' . $data["ID"] . '"]' ?>'>
+                                <i class="fas fa-trash"></i>
+                            </button>
+                          <?php endif; ?>
                         <?php endif; ?>
 
                         <?php if($detailBtn ?? false) : ?>

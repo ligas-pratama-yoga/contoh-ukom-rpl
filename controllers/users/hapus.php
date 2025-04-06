@@ -10,4 +10,4 @@ if (!array_key_exists("permanent", $datas)) {
     \Models\Users::delete($datas['id']);
 }
 
-header('location: /kasir_ligas/public/users');
+header("location: $base_url/users");

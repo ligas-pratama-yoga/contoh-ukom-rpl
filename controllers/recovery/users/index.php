@@ -1,13 +1,12 @@
 <?php
 
-
 require __DIR__ . "/../../../models/Users.php";
 
 use Models\Users;
 
 $datas = Users::allDeleted([
     'id as "ID"',
-    'name as "Nama"',
+    'nama as "Nama"',
     'email as "Email"',
     'deleted_at as "Dihapus pada"'
 ]);

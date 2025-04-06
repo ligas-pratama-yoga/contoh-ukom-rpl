@@ -7,4 +7,4 @@ $datas = $_REQUEST;
 \Models\Items::update(['deleted_at' => '-infinity'])
                 ->where('id', $datas['id']);
 
-header('location: /kasir_ligas/public/transaksi/recovery');
+header("location: $base_url/transaksi/recovery");
