@@ -6,18 +6,21 @@ class Models
 {
     /**
      * Field untuk koneksi
+     *
      * @var null|\PDO
      */
     public $conn = null;
 
     /**
      * Nama table
+     *
      * @var string
      */
     public $table = '';
 
     /**
      * Query dari Model
+     *
      * @var string
      */
     public $query = '';
@@ -35,35 +38,39 @@ class Models
     /**
      * Method untuk memanggil semua data dari model
      *
-     * @param array $name
+     * @param  array $columns
      * @return array
      */
     public static function all($columns = ["*"])
     {
         $instance = new static();
         $columns = implode(',', $columns);
-        return $instance->conn->query("
+        return $instance->conn->query(
+            "
                                 select {$columns} from {$instance->table} 
                                 where deleted_at is null or 
                                 deleted_at = '-infinity' order by id
-                                ")->fetchAll();
+                                "
+        )->fetchAll();
     }
 
     public static function allDeleted($columns = ["*"])
     {
         $instance = new static();
         $columns = implode(',', $columns);
-        return $instance->conn->query("
+        return $instance->conn->query(
+            "
                                         select {$columns} from {$instance->table} 
                                         where deleted_at is not null and 
                                         deleted_at != '-infinity' order by id
-                                        ")->fetchAll();
+                                        "
+        )->fetchAll();
     }
 
     /**
      * Method untuk memanggil data berdasarkan ID
      *
-     * @param string|int $id
+     * @param  string|int $id
      * @return array|mixed
      */
     public static function find($id)
@@ -76,7 +83,7 @@ class Models
     /**
      * Method untuk membuat data pada model
      *
-     * @param array $columns_values
+     * @param  array $columns_values
      * @return bool|string
      */
     public static function create($columns_values = [])
@@ -102,7 +109,7 @@ class Models
     /**
      * Method untuk mengedit data pada model sesuai dengan data yang dimasukkan
      *
-     * @param mixed $columns_values
+     * @param  mixed $columns_values
      * @return Models
      */
     public static function update($columns_values = [])
@@ -125,7 +132,7 @@ class Models
     /**
      * Method untuk menghapus data dari model sesuai id yang dimasukkan
      *
-     * @param int $id
+     * @param  int $id
      * @return bool
      */
     public static function delete($id)
@@ -137,8 +144,8 @@ class Models
     /**
      * Method untuk menambahkan pengkondisian pada query
      *
-     * @param string $column
-     * @param int|string $value
+     * @param  string     $column
+     * @param  int|string $value
      * @return bool
      */
     public function where($column, $value)
@@ -147,5 +154,16 @@ class Models
         // var_dump($this->query);
 
         return $this->conn->query($this->query) == true;
+    }
+
+    /**
+     * Method untuk menghitung jumlah baris yang ada
+     *
+     * @return int|mixed
+     */
+    public static function count()
+    {
+        $instance = new static;
+        return $instance->conn->query("select count(id) as \"jumlah\" from $instance->table")->fetch()["jumlah"];
     }
 }

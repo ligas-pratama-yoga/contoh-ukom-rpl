@@ -24,10 +24,6 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Users
                             </a>
-<a class="nav-link" href="<?= $base_url ?>/login">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                                Login
-                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
