@@ -22,5 +22,4 @@ $id_pelanggan = Transaksi::all(
 );
 $data_pelanggan = Pelanggan::all(["id", "nama"]);
 
-
 require __DIR__ . "/../../views/transaksi.view.php";

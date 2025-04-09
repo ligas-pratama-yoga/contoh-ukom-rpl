@@ -7,10 +7,12 @@
         <div>
             <?php if($tambahBtn ?? true) : ?>
             <a href="<?php echo $_SERVER['REQUEST_URI'] . "/recovery" ?>"
-                class="btn btn-info btn-sm">Recovery</a>
+              class="btn btn-info btn-sm">
+              Recovery
+            </a>
             <button class="btn btn-sm btn-success" type="button" data-bs-toggle="modal" data-bs-target="#tambahData">
-                <i class="fas fa-add"></i>
-                Tambah Data
+              <i class="fas fa-add"></i>
+              Tambah Data
             </button>
             <?php endif; ?>
         </div>
@@ -22,7 +24,7 @@
                     <?php foreach($columns as $value): ?>
                     <th><?php echo $value ?></th>
                     <?php endforeach; ?>
-                    <?php if(($columns ?? false) && (!isset($tambahBtn))) : ?>
+                    <?php if(($columns ?? false) && ($tambahBtn ?? true)) : ?>
                     <th>Aksi</th>
                     <?php endif; ?>
                 </tr>
@@ -30,7 +32,7 @@
             <?php if($totalPrice[0] ?? false) : ?>
             <tfoot>
                 <th colspan="4">Total Harga</th>
-                <th colspan="2"><?php echo $totalPrice[1] ?></th>
+                <th <?php echo ($tambahBtn == null ? "" : "colspan='2'") ?>><?php echo $totalPrice[1] ?></th>
             </tfoot>
             <?php endif; ?>
             <tbody>
@@ -39,8 +41,9 @@
                     <?php foreach($data as $value): ?>
                     <td><?php echo $value ?></td>
                     <?php endforeach; ?>
+                          <?php if($tambahBtn ?? true) : ?>
                     <td>
-                        <?php if($btnRecovery ?? false) : ?>
+                                <?php if($btnRecovery ?? false) : ?>
                         <form
                             action="<?php echo $_SERVER['REQUEST_URI'] . "/{$data["ID"]}" ?>"
                             method="post">
@@ -51,7 +54,6 @@
                             </button>
                         </form>
                         <?php else: ?>
-                          <?php if($tambahBtn ?? true) : ?>
                             <button type="button" class="btn btn-sm text-warning" onclick="setModal(this, 'editData')"
                                 datas-entity='<?php echo '["' . implode('", "', $data) . '"]' ?>'
                                 data-other="<?php echo ${$key_pair[0]}[$key][$key_pair[1]] ?? "" ?>">
@@ -61,17 +63,17 @@
                                 datas-entity='<?php echo '["' . $data["ID"] . '"]' ?>'>
                                 <i class="fas fa-trash"></i>
                             </button>
-                          <?php endif; ?>
                         <?php endif; ?>
 
-                        <?php if($detailBtn ?? false) : ?>
+                                <?php if($detailBtn ?? false) : ?>
                         <a href="<?php echo $detailLink . $data["ID"] ?? $data ?>"
                             class="btn btn-sm text-primary">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <?php endif; ?>
+                                <?php endif; ?>
 
                     </td>
+                          <?php endif; ?>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

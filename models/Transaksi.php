@@ -15,7 +15,7 @@ class Transaksi extends Models
         $instance = new static();
         $columns = implode(',', $columns);
         return $instance->conn->query("select {$columns} from {$instance->table} inner join pelanggan on transaksi.id_pelanggan = pelanggan.id
-                                        where transaksi.deleted_at is null order by transaksi.id")->fetchAll();
+                                        where transaksi.deleted_at is null or transaksi.deleted_at = '-infinity' order by transaksi.id")->fetchAll();
     }
     public static function allDeleted($columns = ["*"])
     {

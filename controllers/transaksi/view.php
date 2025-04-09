@@ -19,7 +19,7 @@ $data_items = Items::allId(
     'produk.nama as "Nama Produk"',
     'items_transaksi.subtotal as "Jumlah Produk"',
     'produk.harga as "Harga/satuan"',
-    'items_transaksi.subtotal * produk.harga as "Jumlah Harga"'
+    'items_transaksi.subtotal * produk.harga as "Jumlah harga"'
     ]
 );
 /*$data_items = [];*/
