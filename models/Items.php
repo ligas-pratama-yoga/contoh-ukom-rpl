@@ -73,10 +73,13 @@ class Items extends \Core\Models
 
     public static function total_stok_terbeli()
     {
-        $instance = new static;
+        $instance = new static();
 
         return $instance->conn->query(
-            "select sum(subtotal) as \"total_stok_terbeli\" from $instance->table"
+            "select sum(subtotal) as \"total_stok_terbeli\" from $instance->table
+            where ($instance->table.deleted_at is null
+                                or $instance->table.deleted_at = '-infinity')
+            "
         )->fetch()["total_stok_terbeli"];
     }
 }

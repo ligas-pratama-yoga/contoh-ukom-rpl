@@ -163,7 +163,12 @@ class Models
      */
     public static function count()
     {
-        $instance = new static;
-        return $instance->conn->query("select count(id) as \"jumlah\" from $instance->table")->fetch()["jumlah"];
+        $instance = new static();
+        return $instance->conn->query("
+        select count(id) as \"jumlah\" from $instance->table
+            where ($instance->table.deleted_at is null
+                                or $instance->table.deleted_at = '-infinity')
+            
+        ")->fetch()["jumlah"];
     }
 }

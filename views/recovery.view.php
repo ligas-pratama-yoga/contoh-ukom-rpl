@@ -10,7 +10,7 @@ partials("navigation");
 		<ol class="breadcrumb mb-4">
 			<li class="breadcrumb-item active"><?= $headOne ?></li>
 		</ol>
-		<?php partials("table", ["datas" => $datas, "columns" => $columns, "btnRecovery" => true]) ?>
+		<?php partials("table", ["datas" => $datas, "columns" => $columns, "btnRecovery" => true, "tambahBtn" => false]) ?>
 
 	</div>
 </main>
