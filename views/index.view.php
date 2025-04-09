@@ -38,7 +38,7 @@ require __DIR__ . "/partials/navigation.php";
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
         <script>
-          const value = <?php echo $jumlah_stok_tersisa . "\n" ?>
+          const value = <?php echo $jumlah_stok_terbeli . "\n" ?>
           const COLORS = ['rgb(140, 214, 16)', 'rgb(239, 198, 0)', 'rgb(231, 24, 49)'];
           const MAX = <?= $jumlah_stok . "\n" ?>
           function index(perc) {

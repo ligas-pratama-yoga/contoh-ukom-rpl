@@ -20,7 +20,7 @@
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Pelanggan
                             </a>
-<a class="nav-link" href="<?= $base_url ?>/users">
+                            <a class="nav-link" href="<?= $base_url ?>/users">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                                 Users
                             </a>
