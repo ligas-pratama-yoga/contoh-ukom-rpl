@@ -1,6 +1,6 @@
 <?php
 session_start();
-require __DIR__ . "/../helper/functions.php";
+require __DIR__ . "./../helper/functions.php";
 $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
 $uri = str_replace(
     $base_url, "", preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI'])
@@ -25,7 +25,7 @@ $routes = [
         "/users/recovery" => __DIR__ . "/../controllers/recovery/users/index.php",
         "/pelanggan/recovery" => __DIR__ . "/../controllers/recovery/pelanggan/index.php",
 
-        "/login" => __DIR__ . "/../views/login.php",
+        "/login" => base_path("login/login.php"),
     ],
     'post' => [
         "/login" => __DIR__ . "/../controllers/session/tambah.php",
