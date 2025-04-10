@@ -26,6 +26,14 @@ require __DIR__ . "/partials/navigation.php";
                         <h1><?php echo $jumlah_pelanggan ?></h1>
                       </div>
                   </div>
+                   <div class="col">
+              <div class="h-100 d-flex flex-column gap-2">
+                <div class="card bg-primary text-light" style="flex-grow: 1;">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <span>Jumlah Produk</span>
+                        <h1><?php echo $jumlah_produk ?></h1>
+                      </div>
+                  </div>
                 <div class="card bg-warning" style="flex-grow: 1;">
                   <div class="card-body d-flex flex-column justify-content-center align-items-center">
                     <span>Jumlah Transaksi</span>

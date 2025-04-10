@@ -14,6 +14,7 @@ use Models\Produk;
 
 $jumlah_transaksi = Transaksi::count();
 $jumlah_pelanggan = Pelanggan::count();
+$jumlah_produk = Produk::count();
 $jumlah_stok_tersisa = Produk::jumlah_sisa_stok() ?? 0;
 $jumlah_stok_terbeli = Items::total_stok_terbeli() ?? 0;
 $jumlah_stok = $jumlah_stok_terbeli + $jumlah_stok_tersisa;

@@ -36,6 +36,10 @@ partials("navigation");
                         "label" => "Stok",
                         "type" => "number"
                     ],
+                    [
+                        "column" => "merek",
+                        "label" => "Merek",
+                    ],
                 ]
                 ]
             ) ?>

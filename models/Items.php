@@ -82,4 +82,11 @@ class Items extends \Core\Models
             "
         )->fetch()["total_stok_terbeli"];
     }
+
+    public static function deleteItemsWithTransactionId($id)
+    {
+        $instance = new static();
+
+        return $instance->conn->query("delete from $instance->table where id_transaksi=$id");
+    }
 }
