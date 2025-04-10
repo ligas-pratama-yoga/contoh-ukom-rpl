@@ -25,7 +25,7 @@ $routes = [
         "/users/recovery" => __DIR__ . "/../controllers/recovery/users/index.php",
         "/pelanggan/recovery" => __DIR__ . "/../controllers/recovery/pelanggan/index.php",
 
-        "/login" => base_path("login/login.php"),
+        "/login" => base_path("views/login.php"),
     ],
     'post' => [
         "/login" => __DIR__ . "/../controllers/session/tambah.php",
