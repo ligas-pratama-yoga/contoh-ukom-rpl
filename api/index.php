@@ -2,10 +2,12 @@
 session_start();
 require __DIR__ . "/../helper/functions.php";
 $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
-var_dump($base_url);
-exit;
 $uri = str_replace($base_url, "", preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI']));
 $method = strtolower($_REQUEST['_method'] ?? $_SERVER['REQUEST_METHOD']);
+var_dump($base_url);
+var_dump($uri);
+var_dump($method);
+exit;
 $routes = [
     'get' => [
         "/" => base_path("controllers/static/index.php"),
