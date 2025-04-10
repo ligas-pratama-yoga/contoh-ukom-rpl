@@ -8,6 +8,21 @@ class Produk extends \Core\Models
 {
     public $table = "produk";
 
+    public static function all($columns = ["*"])
+    {
+        $instance = new static();
+        $columns = implode(',', $columns);
+        return $instance->conn->query(
+            "
+                                select {$columns} from {$instance->table} 
+                                where (deleted_at is null or 
+                                deleted_at = '-infinity' )
+                                and stok != 0
+                                order by id
+                                "
+        )->fetchAll();
+    }
+
     public static function jumlah_sisa_stok()
     {
         $instance = new static();
