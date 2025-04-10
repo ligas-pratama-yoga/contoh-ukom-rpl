@@ -8,7 +8,7 @@ class Produk extends \Core\Models
 {
     public $table = "produk";
 
-    public static function all($columns = ["*"])
+    public static function allNotSold($columns = ["*"])
     {
         $instance = new static();
         $columns = implode(',', $columns);

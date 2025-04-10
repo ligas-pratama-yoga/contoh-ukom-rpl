@@ -16,15 +16,15 @@ $data_transaksi = Transaksi::find($id);
 $data_items = Items::allId(
     $id,
     [
-    'items_transaksi.id as "ID"',
-    'produk.nama as "Nama Produk"',
-    'items_transaksi.subtotal as "Jumlah Produk"',
-    'produk.harga as "Harga/satuan"',
-    'items_transaksi.subtotal * produk.harga as "Jumlah harga"'
+        'items_transaksi.id as "ID"',
+        'produk.nama as "Nama Produk"',
+        'items_transaksi.subtotal as "Jumlah Produk"',
+        'produk.harga as "Harga/satuan"',
+        'items_transaksi.subtotal * produk.harga as "Jumlah harga"'
     ]
 );
 
-$data_produk = Produk::all();
+$data_produk = Produk::allNotSold();
 $columns = array_keys($data_items[0] ?? []);
 $total_harga = Items::totalPrice($id);
 
@@ -46,7 +46,6 @@ $data_items_pdf[] = [
 ];
 
 $tambahBtn = $data_transaksi['status_pembayaran'] == null ? true : false;
-// BERAKHIR DISINI!!!
 if (isset($_SESSION['showAlert'])) {
     $showDangerAlert = $_SESSION['showAlert'] == 'danger' ? true : false;
     $showSuccessAlert = $_SESSION['showAlert'] == 'success' ? true : false;
@@ -58,18 +57,6 @@ if ($showSuccessAlert ?? false) {
     $kembalian = $_SESSION['kembalian'];
     unset($_SESSION['kembalian']);
 }
-
-// $tes_columns[]= array_values(array_slice($columns,1));
-// $tes_columns = array_map(function($v){
-//     return array_map(function($k){
-//         $arr = [];
-//         $tmp = $k;
-//         $arr['text'] =  $tmp;
-//         $arr['fontSize'] = 21;
-//         $arr['bold'] = true;
-//         return $arr;
-//     }, array_values($v));
-// }, $tes_columns);
 
 $tes_columns = [
     [
@@ -98,10 +85,5 @@ $data_items_test = array_map(function ($v) {
     }, array_values(array_slice($v, 1)));
 }, $data_items_test);
 $user = $_SESSION['id'];
-// echo "<pre>";
-// var_dump($tes_columns);
-// var_dump($data_items_test);
-// echo "</pre>";
-// exit;
 
 require __DIR__ . "/../../views/transaksi_view.view.php";
