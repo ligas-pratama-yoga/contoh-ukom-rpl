@@ -1,6 +1,6 @@
 <?php
 
-cekAuth();
+/*cekAuth();*/
 
 require base_path("models/Pelanggan.php");
 require base_path("models/Transaksi.php");
