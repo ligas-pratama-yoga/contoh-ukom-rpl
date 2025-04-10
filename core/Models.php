@@ -92,8 +92,8 @@ class Models
             return "Failed, no data given";
         }
 
-        foreach($columns_values as $data){
-            if($data == ""){
+        foreach ($columns_values as $data){
+            if ($data == "") {
                 $_SESSION['err'] = true;
                 return false;
             }
@@ -122,7 +122,7 @@ class Models
     public static function update($columns_values = [])
     {
         foreach($columns_values as $data){
-            if($data == ""){
+            if($data == "") {
                 $_SESSION['err'] = true;
                 return false;
             }
@@ -177,11 +177,13 @@ class Models
     public static function count()
     {
         $instance = new static();
-        return $instance->conn->query("
+        return $instance->conn->query(
+            "
         select count(id) as \"jumlah\" from $instance->table
             where ($instance->table.deleted_at is null
                                 or $instance->table.deleted_at = '-infinity')
             
-        ")->fetch()["jumlah"];
+        "
+        )->fetch()["jumlah"];
     }
 }
