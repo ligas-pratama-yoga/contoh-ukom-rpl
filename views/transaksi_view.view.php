@@ -176,15 +176,14 @@ require __DIR__ . "/partials/navigation.php";
 		<?php partials(
 		    "table",
 		    [
-		                            "datas" => $data_items,
-		                            "columns" => $columns,
-		                            "data_produk" => $data_produk,
-		                            "key_pair" => ["data_produk", "id"],
-		                            "totalPrice" => [true, $total_harga],
-		                            // MULAI DARI SINI
-		                            'tambahBtn' => $tambahBtn
-		                            // SELESAI DISINI
-		                            ]
+		                                    "datas" => $data_items,
+		                                    "columns" => $columns,
+		                                    "data_produk" => $data_produk,
+		                                    "key_pair" => ["data_produk", "id"],
+		                                    "totalPrice" => [true, $total_harga],
+		                                    'tambahBtn' => $tambahBtn,
+		                                    'btnRecovery' => false,
+		                                    ]
 		) ?>
 	</div>
 </main>

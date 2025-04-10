@@ -24,9 +24,6 @@
 					<?php foreach($columns as $value): ?>
 					<th><?php echo $value ?></th>
 					<?php endforeach; ?>
-					<?php if(($columns ?? false) && ($tambahBtn ?? true)) : ?>
-					<th>Aksi</th>
-					<?php endif; ?>
 					<?php if(($columns ?? false) && (($tambahBtn ?? false) || ($btnRecovery ?? false))) : ?>
 					<th>Aksi</th>
 					<?php endif; ?>
@@ -45,7 +42,7 @@
 					<?php foreach($data as $value): ?>
 					<td><?php echo $value ?></td>
 					<?php endforeach; ?>
-					<?php if(($tambahBtn ?? false) || ($btnRecovery ?? false)) : ?>
+					<?php if(!($tambahBtn ?? false) || ($btnRecovery ?? false)) : ?>
 					<td>
 						<form
 							action="<?php echo $_SERVER['REQUEST_URI'] . "/{$data["ID"]}" ?>"
