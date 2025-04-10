@@ -24,25 +24,34 @@
 					<?php foreach($columns as $value): ?>
 					<th><?php echo $value ?></th>
 					<?php endforeach; ?>
-					<?php if(($columns ?? false) && (($tambahBtn ?? false) || ($btnRecovery ?? false))) : ?>
+					<?php if(($columns ?? false) && ($btnRecovery ?? true)) : ?>
+					<th>Aksi</th>
+					<?php endif; ?>
+					<?php if(($columns ?? false) && (($tambahBtn ?? false))) : ?>
 					<th>Aksi</th>
 					<?php endif; ?>
 				</tr>
 			</thead>
-			<?php if($totalPrice[0] ?? false) : ?>
-			<tfoot>
+			<?php // if($totalPrice[0] ?? false) :?>
+			<!-- <tfoot>
 				<th colspan="4">Total Harga</th>
 				<th <?php echo ($tambahBtn == null ? "" : "colspan='2'") ?>><?php echo $totalPrice[1] ?>
-				</th>
-			</tfoot>
-			<?php endif; ?>
+			</th>
+			</tfoot> -->
+			<?php // endif;?>
 			<tbody>
 				<?php foreach($datas as $key => $data): ?>
 				<tr>
-					<?php foreach($data as $value): ?>
+					<?php foreach($data as $k => $value): ?>
+					<?php if($k == "Status Pembayaran"): ?>
+					<?php if($value == null): ?>
+					<td style="color: red;">belum bayar</td>
+					<?php continue; ?>
+					<?php endif; ?>
+					<?php endif; ?>
 					<td><?php echo $value ?></td>
 					<?php endforeach; ?>
-					<?php if(!($tambahBtn ?? false) || ($btnRecovery ?? false)) : ?>
+					<?php if(($btnRecovery ?? false)) : ?>
 					<td>
 						<form
 							action="<?php echo $_SERVER['REQUEST_URI'] . "/{$data["ID"]}" ?>"
@@ -90,6 +99,21 @@
 					<?php endif; ?>
 				</tr>
 				<?php endforeach; ?>
+				<?php if($columns && ($totalPrice ?? false)): ?>
+				<tr>
+					<td colspan="4"><b>Total Harga</b></td>
+					<td colspan="2"><b><?= $totalPrice[1] ?></b></td>
+				</tr>
+				<tr>
+					<td colspan="4"><b>Tunai</b></td>
+					<td colspan="2"><b><?= $tunai ?? 0?></b></td>
+				</tr>
+				<tr>
+					<td colspan="4"><b>Kembalian</b></td>
+					<td colspan="2"><b><?= $kembalian ?? 0 ?></b>
+					</td>
+				</tr>
+				<?php endif; ?>
 			</tbody>
 
 		</table>

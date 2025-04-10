@@ -18,8 +18,15 @@ if ($datas["total_harga"] > $datas['inputUang']) {
 } else {
     $_SESSION['showAlert'] = 'success';
 
+    Transaksi::update([
+        'tunai' => $datas['inputUang']
+    ])->where('id', $datas['id_transaksi']);
+
     if ($datas['inputUang'] > $datas['total_harga']) {
         $_SESSION['kembalian'] = $datas['inputUang'] - $datas['total_harga'];
+        Transaksi::update([
+            "kembalian" => $_SESSION['kembalian']
+        ])->where('id', $datas['id_transaksi']);
     }
 
     Transaksi::update(["status_pembayaran" => "sudah bayar"])

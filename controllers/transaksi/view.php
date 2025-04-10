@@ -54,7 +54,7 @@ if (isset($_SESSION['showAlert'])) {
     unset($_SESSION['showAlert']);
 }
 
-if ($showSuccessAlert) {
+if ($showSuccessAlert ?? false) {
     $kembalian = $_SESSION['kembalian'];
     unset($_SESSION['kembalian']);
 }

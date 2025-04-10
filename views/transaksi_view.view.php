@@ -27,7 +27,7 @@ require __DIR__ . "/partials/navigation.php";
 						y1: 5,
 						x2: 515,
 						y2: 5,
-						lineWidth: 2.5,
+						lineWidth: 1,
 						lineColor: 'black',
 					}, ],
 					margin: [0, 10, 0, 20],
@@ -176,14 +176,16 @@ require __DIR__ . "/partials/navigation.php";
 		<?php partials(
 		    "table",
 		    [
-		                                    "datas" => $data_items,
-		                                    "columns" => $columns,
-		                                    "data_produk" => $data_produk,
-		                                    "key_pair" => ["data_produk", "id"],
-		                                    "totalPrice" => [true, $total_harga],
-		                                    'tambahBtn' => $tambahBtn,
-		                                    'btnRecovery' => false,
-		                                    ]
+		                                                    "datas" => $data_items,
+		                                                    "columns" => $columns,
+		                                                    "data_produk" => $data_produk,
+		                                                    "key_pair" => ["data_produk", "id"],
+		                                                    "totalPrice" => [true, $total_harga],
+		                                                    'tambahBtn' => $tambahBtn,
+		                                                    'btnRecovery' => false,
+		                                                    'kembalian' => $data_transaksi['kembalian'],
+		                                                    'tunai' => $data_transaksi['tunai']
+		                                                    ]
 		) ?>
 	</div>
 </main>

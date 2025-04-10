@@ -10,7 +10,8 @@ $datas = Transaksi::all(
     [
     'transaksi.id as "ID"',
     'pelanggan.nama as "Nama"',
-    'transaksi.tanggal_transaksi as "Tanggal Transaksi"'
+    'transaksi.tanggal_transaksi as "Tanggal Transaksi"',
+    'transaksi.status_pembayaran as "Status Pembayaran"'
     ]
 );
 $columns = array_keys($datas[0] ?? []);
