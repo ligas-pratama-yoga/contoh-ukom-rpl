@@ -2,7 +2,11 @@
 session_start();
 require __DIR__ . "/../helper/functions.php";
 $base_url = str_replace("/index.php", "", $_SERVER['SCRIPT_NAME']);
-$uri = str_replace($base_url, "", preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI']));
+$uri = str_replace(
+    $base_url, "", preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI'])
+) == "" ?
+    "/" : 
+    str_replace($base_url, "", preg_replace("$\d+$", "{id}", $_SERVER['REQUEST_URI']));
 $method = strtolower($_REQUEST['_method'] ?? $_SERVER['REQUEST_METHOD']);
 var_dump($base_url);
 var_dump($uri);
