@@ -49,7 +49,7 @@
 					<?php continue; ?>
 					<?php endif; ?>
 					<?php endif; ?>
-					<td><?php echo $value ?></td>
+					<td><?php echo htmlspecialchars($value) ?></td>
 					<?php endforeach; ?>
 					<?php if(($btnRecovery ?? false)) : ?>
 					<td>
@@ -57,7 +57,7 @@
 							action="<?php echo $_SERVER['REQUEST_URI'] . "/{$data["ID"]}" ?>"
 							method="post">
 							<input type="hidden" name="id"
-								value="<?php echo $data['ID'] ?>">
+								value="<?php echo htmlspecialchars($data['ID']) ?>">
 							<button class="btn btn-sm btn-info">
 								Balikan
 							</button>
@@ -102,7 +102,7 @@
 				<?php if($columns && ($totalPrice ?? false)): ?>
 				<tr>
 					<td colspan="4"><b>Total Harga</b></td>
-					<td colspan="2"><b><?= $totalPrice[1] ?></b></td>
+					<td colspan="2"><b><?= htmlspecialchars($totalPrice[1]) ?></b></td>
 				</tr>
 				<tr>
 					<td colspan="4"><b>Tunai</b></td>

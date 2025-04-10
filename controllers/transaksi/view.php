@@ -59,5 +59,49 @@ if ($showSuccessAlert ?? false) {
     unset($_SESSION['kembalian']);
 }
 
+// $tes_columns[]= array_values(array_slice($columns,1));
+// $tes_columns = array_map(function($v){
+//     return array_map(function($k){
+//         $arr = [];
+//         $tmp = $k;
+//         $arr['text'] =  $tmp;
+//         $arr['fontSize'] = 21;
+//         $arr['bold'] = true;
+//         return $arr;
+//     }, array_values($v));
+// }, $tes_columns);
+
+$tes_columns = [
+    [
+        "Nama"
+    ],
+    [
+        "Qty"
+    ],
+    [
+        "Sat."
+    ],
+    [
+        'Tota.'
+    ]
+    ];
+
+$data_items_test = $data_items;
+$data_items_test = array_map(function ($v) {
+    return array_map(function ($k) {
+        $arr = [];
+        $tmp = $k;
+        $arr['text'] =  $tmp;
+        $arr['fontSize'] = 18;
+        $arr['bold'] = true;
+        return $arr;
+    }, array_values(array_slice($v, 1)));
+}, $data_items_test);
+$user = $_SESSION['id'];
+// echo "<pre>";
+// var_dump($tes_columns);
+// var_dump($data_items_test);
+// echo "</pre>";
+// exit;
 
 require __DIR__ . "/../../views/transaksi_view.view.php";

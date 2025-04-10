@@ -91,6 +91,13 @@ class Models
         if ($columns_values == [] || $columns_values == null) {
             return "Failed, no data given";
         }
+
+        foreach($columns_values as $data){
+            if($data == ""){
+                $_SESSION['err'] = true;
+                return false;
+            }
+        }
         $instance = new static();
 
         // "insert into table(id, name) values('1', 'Ligas')
@@ -114,6 +121,12 @@ class Models
      */
     public static function update($columns_values = [])
     {
+        foreach($columns_values as $data){
+            if($data == ""){
+                $_SESSION['err'] = true;
+                return false;
+            }
+        }
         $instance = new static();
         $sets = '';
 

@@ -13,12 +13,108 @@ require __DIR__ . "/partials/navigation.php";
 	function generatePDF() {
 		const docDefinition = {
 			content: [{
-					text: "Laporan transaksi",
-					style: 'header'
+					columns: [{
+							text: "Toko Elstore",
+							fontSize: 32,
+							bold: true
+						},
+						{
+							text: "<?= $data_transaksi['tanggal_transaksi'] ?>",
+							alignment: "right",
+							fontSize: 32,
+							bold: true
+						}
+					]
+				},
+				// {
+				// 	text: "<?php // echo $data_transaksi['tanggal_transaksi']?>",
+				// 	style: 'transactionDate'
+				// },
+				{
+					canvas: [{
+						type: 'line',
+						x1: 0,
+						y1: 5,
+						x2: 515,
+						y2: 5,
+						lineWidth: 1,
+						lineColor: 'black',
+					}, ],
+					margin: [0, 10, 0, 20],
 				},
 				{
-					text: "<?php echo date('j F, Y') ?>",
-					style: 'transactionDate'
+					// table: {
+					// 	headerRows: 1,
+					// 	widths: ['*', '*', '*', '*', '*'],
+					// }
+					columns: <?= json_encode($tes_columns) ?> ,
+					marginBottom: 10
+				},
+				<?php foreach($data_items_test as $data): ?>
+				{
+					columns: <?= json_encode($data) ?> ,
+					marginBottom: 10
+				},
+				<?php endforeach; ?>
+				{
+					canvas: [{
+						type: 'line',
+						x1: 0,
+						y1: 5,
+						x2: 515,
+						y2: 5,
+						lineWidth: 1,
+						lineColor: 'black',
+					}, ],
+					margin: [0, 10, 0, 20],
+				},
+				{
+					columns: [{
+							text: "Total Harga",
+							fontSize: 24,
+							bold: true
+						},
+						{
+
+							text: "<?= $total_harga?>",
+							alignment: "right",
+							fontSize: 24,
+							bold: true
+						}
+					],
+					marginBottom: 14
+				},
+				{
+					columns: [{
+							text: "Tunai",
+							fontSize: 24,
+							bold: true
+						},
+						{
+
+							text: "<?= $data_transaksi['tunai']?>",
+							alignment: "right",
+							fontSize: 24,
+							bold: true
+						}
+					],
+					marginBottom: 14
+				},
+				{
+					columns: [{
+							text: "Kembalian",
+							fontSize: 24,
+							bold: true
+						},
+						{
+
+							text: "<?= $data_transaksi['kembalian'] ?? 0?>",
+							alignment: "right",
+							fontSize: 24,
+							bold: true
+						}
+					],
+					marginBottom: 14
 				},
 				{
 					canvas: [{
@@ -33,11 +129,25 @@ require __DIR__ . "/partials/navigation.php";
 					margin: [0, 10, 0, 20],
 				},
 				{
-					table: {
-						headerRows: 1,
-						widths: ['*', '*', '*', '*', '*'],
-						body: <?php echo json_encode($data_items_pdf) ?>
-					}
+					columns: [{
+							text: "Kasir",
+							fontSize: 24,
+							bold: true
+						},
+						{
+
+							text: "<?= $user?>",
+							alignment: "right",
+							fontSize: 24,
+							bold: true
+						}
+					],
+					marginBottom: 300
+				},
+				{
+					text: "***********Terimakasih***********",
+					fontSize: 14,
+					alignment: "center"
 				}
 			],
 			styles: {
@@ -176,16 +286,16 @@ require __DIR__ . "/partials/navigation.php";
 		<?php partials(
 		    "table",
 		    [
-		                                                    "datas" => $data_items,
-		                                                    "columns" => $columns,
-		                                                    "data_produk" => $data_produk,
-		                                                    "key_pair" => ["data_produk", "id"],
-		                                                    "totalPrice" => [true, $total_harga],
-		                                                    'tambahBtn' => $tambahBtn,
-		                                                    'btnRecovery' => false,
-		                                                    'kembalian' => $data_transaksi['kembalian'],
-		                                                    'tunai' => $data_transaksi['tunai']
-		                                                    ]
+"datas" => $data_items,
+"columns" => $columns,
+"data_produk" => $data_produk,
+"key_pair" => ["data_produk", "id"],
+"totalPrice" => [true, $total_harga],
+'tambahBtn' => $tambahBtn,
+'btnRecovery' => false,
+'kembalian' => $data_transaksi['kembalian'],
+'tunai' => $data_transaksi['tunai']
+]
 		) ?>
 	</div>
 </main>
@@ -308,6 +418,16 @@ require __DIR__ . "/partials/navigation.php";
 		icon: "warning"
 	});
 </script>
+<?php endif; ?>
+<?php if($_SESSION['err'] ?? false): ?>
+    <script>
+	Swal.fire({
+		title: "Error",
+		text: "Pastikan Anda mengisi semua input field!",
+		icon: "error"
+	});
+    </script>
+    <?php unset($_SESSION['err']) ?>
 <?php endif; ?>
 <?php
 require __DIR__ . "/partials/footer.php";

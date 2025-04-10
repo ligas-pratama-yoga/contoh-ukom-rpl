@@ -36,6 +36,10 @@ partials("navigation");
                         "label" => "Stok",
                         "type" => "number"
                     ],
+                    [ 
+                       "column" => "merek",
+                       "label" => "Merek",
+                    ],
                 ]
                 ]
             ) ?>
@@ -86,6 +90,17 @@ partials("navigation");
     </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php if($_SESSION['err'] ?? false): ?>
+    <script>
+	Swal.fire({
+		title: "Error",
+		text: "Pastikan Anda mengisi semua input field!",
+		icon: "error"
+	});
+    </script>
+    <?php unset($_SESSION['err']) ?>
+<?php endif; ?>
 <?php
 require __DIR__ . "/partials/footer.php";
 require __DIR__ . "/partials/foot.php";
